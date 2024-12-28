@@ -1,0 +1,21 @@
+version: '3.9'
+
+networks:
+  internal_network:
+    name: internal_network
+
+services:
+  fib_api:
+    build:
+      context: ./  # Build the image from the current directory
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"  # Map container's port 8000 to host's port 8000
+    volumes:
+      - .:/app  # Mount the current directory into the container (optional)
+    command: bash -c 'watchmedo auto-restart --directory=./app --pattern=*.py --recursive -- uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload'
+    networks:
+      - internal_network
+
+volumes:
+  api_data:
