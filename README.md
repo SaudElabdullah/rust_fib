@@ -1,4 +1,4 @@
-# Redis + FastAPI
+# Rust Build withPython
 
 This is a simple application that shows how to use Rust to build a Python module and use it in a FastAPI application.
 
